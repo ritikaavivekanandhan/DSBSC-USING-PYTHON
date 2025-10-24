@@ -15,7 +15,7 @@ Amplitude Modulation (AM) is a modulation technique in which the amplitude of a 
 
 In AM, a low-frequency message signal (such as an audio signal) is superimposed on a high-frequency carrier wave to enable efficient transmission over long distances. The amplitude of the carrier changes according to the strength of the message signal, whereas the frequency and phase are unchanged.
 
-ALGORITHM (Brief)
+ALGORITHM 
 
 Start the program.
 
@@ -54,36 +54,48 @@ Stop the program.
 
 Program
 ~~~~~~~~
-Am=3.0;
-fm=194;
-Ac=6.0;
-fc=1940;
-fs=19400;
-t=0:1/fs:2/fm;
-m=Am*cos(2*3.14*fm*t);
-subplot(3,1,1);
-plot(t,m);
-c=Ac*cos(2*3.14*fc*t);
-subplot(3,1,2);
-plot(t,c);
-s1=(Ac+m).*cos(2*3.14*fc*t);
-s2=(Ac-m).*cos(2*3.14*fc*t);
-s=s1-s2;
-subplot(3,1,3);
-plot(t,s);
+import numpy as np
+import matplotlib.pyplot as plt
+Am = 3.0
+fm = 194
+Ac = 6.0
+fc = 1940
+fs = 19400
+t = np.arange(0, 2/fm, 1/fs)
+m = Am * np.cos(2 * np.pi * fm * t)
+plt.subplot(3, 1, 1)
+plt.plot(t, m)
+plt.title('Message Signal')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+c = Ac * np.cos(2 * np.pi * fc * t)
+plt.subplot(3, 1, 2)
+plt.plot(t, c)
+plt.title('Carrier Signal')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+s1 = (Ac + m) * np.cos(2 * np.pi * fc * t)
+s2 = (Ac - m) * np.cos(2 * np.pi * fc * t)
+s = s1 - s2
+plt.subplot(3, 1, 3)
+plt.plot(t, s)
+plt.title('Modulated Signal (s1 - s2)')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+
+plt.tight_layout()
+plt.show()
 ~~~~~~~~
 
 OUTPUT WAVEFORM
  
- <img width="1920" height="1200" alt="Screenshot (105)" src="https://github.com/user-attachments/assets/89799486-fc5a-40df-b17e-84816bed693b" />
+ <img width="630" height="469" alt="image" src="https://github.com/user-attachments/assets/f24968a3-2b38-4ee6-b919-39ddcd15b081" />
+
 
 TABULATION
 
 ![WhatsApp Image 2025-10-24 at 16 11 49_c4e57dd2](https://github.com/user-attachments/assets/15e80e2c-44aa-44c7-811f-d59966ea91fd)
 
-MODEL GRAPH
-
-<img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/9642d21b-efd0-45e7-8ffd-dc7596f62e20" />
 
 RESULT
 
